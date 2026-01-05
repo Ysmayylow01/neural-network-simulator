@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ösen Neyron Tor Simulýatory - Professional Edition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="neural-grid"></div>
+    </div>
+
+    <div class="app-wrapper">
+        <!-- Top Navigation Bar -->
+        <nav class="top-navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36">
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#0066ff;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="9" cy="18" r="3.5" fill="url(#logoGrad)"/>
+                        <circle cx="18" cy="9" r="3" fill="url(#logoGrad)" opacity="0.8"/>
+                        <circle cx="18" cy="18" r="3" fill="url(#logoGrad)" opacity="0.8"/>
+                        <circle cx="18" cy="27" r="3" fill="url(#logoGrad)" opacity="0.8"/>
+                        <circle cx="27" cy="18" r="3.5" fill="url(#logoGrad)"/>
+                        <path d="M12 18L24 18M12 18L17 11M12 18L17 25" stroke="url(#logoGrad)" stroke-width="1.5" opacity="0.4"/>
+                    </svg>
+                    <div class="brand-text">
+                        <h1>Neural Network Simulator</h1>
+                        <span class="brand-tagline">Professional AI Training Platform</span>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="framework-badge" id="framework-badge">TensorFlow</div>
+                    <button class="nav-btn" id="about-btn" title="Biz Barada / About Us">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M9 6V6.5M9 8.5V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        Biz Barada
+                    </button>
+                    <button class="nav-btn" id="download-report">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 12L9 3M9 12L6 9M9 12L12 9M3 15L15 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                        Export
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Dashboard -->
+        <div class="dashboard">
+            <!-- Left Sidebar - Configuration -->
+            <aside class="config-sidebar">
+                <div class="sidebar-section">
+                    <div class="section-header">
+                        <h2>Framework Selection</h2>
+                        <div class="header-icon">🧠</div>
+                    </div>
+                    
+                    <div class="framework-selector">
+                        <div class="framework-option active" data-framework="tensorflow">
+                            <div class="framework-logo">
+                                <svg width="32" height="32" viewBox="0 0 32 32">
+                                    <rect width="32" height="32" rx="6" fill="#FF6F00"/>
+                                    <text x="16" y="22" font-family="Arial" font-size="14" fill="white" font-weight="bold" text-anchor="middle">TF</text>
+                                </svg>
+                            </div>
+                            <div class="framework-info">
+                                <div class="framework-name">TensorFlow</div>
+                                <div class="framework-desc">Google's ML Framework</div>
+                            </div>
+                        </div>
+                        
+                        <div class="framework-option" data-framework="pytorch">
+                            <div class="framework-logo">
+                                <svg width="32" height="32" viewBox="0 0 32 32">
+                                    <rect width="32" height="32" rx="6" fill="#EE4C2C"/>
+                                    <text x="16" y="22" font-family="Arial" font-size="12" fill="white" font-weight="bold" text-anchor="middle">PT</text>
+                                </svg>
+                            </div>
+                            <div class="framework-info">
+                                <div class="framework-name">PyTorch</div>
+                                <div class="framework-desc">Facebook's Deep Learning</div>
+                            </div>
+                        </div>
+                        
+                        <div class="framework-option" data-framework="sklearn">
+                            <div class="framework-logo">
+                                <svg width="32" height="32" viewBox="0 0 32 32">
+                                    <rect width="32" height="32" rx="6" fill="#F7931E"/>
+                                    <text x="16" y="22" font-family="Arial" font-size="12" fill="white" font-weight="bold" text-anchor="middle">SK</text>
+                                </svg>
+                            </div>
+                            <div class="framework-info">
+                                <div class="framework-name">Scikit-learn</div>
+                                <div class="framework-desc">Classic ML Library</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="section-header">
+                        <h2>Network Architecture</h2>
+                        <div class="header-icon">🏗️</div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Input Layer</label>
+                            <input type="number" id="input-layer" value="2" min="1" max="100" class="input-field">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Hidden Layers <span class="hint">(e.g., 8,6,4)</span></label>
+                            <input type="text" id="hidden-layers" value="8,6" placeholder="8,6,4" class="input-field">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Output Layer</label>
+                            <input type="number" id="output-layer" value="1" min="1" max="10" class="input-field">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="section-header">
+                        <h2>Hyperparameters</h2>
+                        <div class="header-icon">⚙️</div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Activation Function</label>
+                            <select id="activation" class="select-field">
+                                <option value="relu">ReLU</option>
+                                <option value="tanh">Tanh</option>
+                                <option value="sigmoid">Sigmoid</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Optimizer</label>
+                            <select id="optimizer" class="select-field">
+                                <option value="adam">Adam</option>
+                                <option value="sgd">SGD</option>
+                                <option value="rmsprop">RMSprop</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Learning Rate</label>
+                            <input type="number" id="learning-rate" value="0.001" step="0.0001" class="input-field">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Batch Size</label>
+                            <input type="number" id="batch-size" value="32" min="1" max="256" class="input-field">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Dropout Rate</label>
+                            <input type="number" id="dropout" value="0.0" min="0" max="0.9" step="0.1" class="input-field">
+                        </div>
+                        
+                        <div class="input-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="batch-norm">
+                                <span>Batch Normalization</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="action-btn primary-btn" id="create-network">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Create Neural Network
+                </button>
+            </aside>
+
+            <!-- Center - Main Workspace -->
+            <main class="main-workspace">
+                <!-- Metrics Cards -->
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-icon">📊</div>
+                        <div class="metric-content">
+                            <div class="metric-label">Training Loss</div>
+                            <div class="metric-value" id="train-loss">--</div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">🎯</div>
+                        <div class="metric-content">
+                            <div class="metric-label">Accuracy</div>
+                            <div class="metric-value" id="train-accuracy">--</div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">✓</div>
+                        <div class="metric-content">
+                            <div class="metric-label">Val Accuracy</div>
+                            <div class="metric-value" id="val-accuracy">--</div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">🔄</div>
+                        <div class="metric-content">
+                            <div class="metric-label">Epochs</div>
+                            <div class="metric-value" id="total-epochs">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Visualization -->
+                <div class="viz-container">
+                    <div class="viz-header">
+                        <h3>Network Architecture Visualization</h3>
+                        <div class="viz-controls">
+                            <button class="viz-btn" id="toggle-labels">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </button>
+                            <button class="viz-btn" id="save-viz">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M12 14H4a1 1 0 01-1-1V3a1 1 0 011-1h5l4 4v7a1 1 0 01-1 1z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="network-canvas"></canvas>
+                        <div class="canvas-placeholder" id="canvas-placeholder">
+                            <div class="placeholder-icon">
+                                <svg width="80" height="80" viewBox="0 0 80 80">
+                                    <circle cx="20" cy="40" r="8" fill="#e0e7ff" opacity="0.5"/>
+                                    <circle cx="40" cy="20" r="6" fill="#e0e7ff" opacity="0.5"/>
+                                    <circle cx="40" cy="40" r="6" fill="#e0e7ff" opacity="0.5"/>
+                                    <circle cx="40" cy="60" r="6" fill="#e0e7ff" opacity="0.5"/>
+                                    <circle cx="60" cy="40" r="8" fill="#e0e7ff" opacity="0.5"/>
+                                </svg>
+                            </div>
+                            <p>Create a network to visualize architecture</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Training Controls -->
+                <div class="training-panel">
+                    <div class="training-header">
+                        <h3>Training Configuration</h3>
+                    </div>
+                    
+                    <div class="training-controls">
+                        <div class="control-group">
+                            <label>Dataset</label>
+                            <select id="dataset" class="select-field compact">
+                                <option value="xor">XOR Problem</option>
+                                <option value="and">AND Gate</option>
+                                <option value="or">OR Gate</option>
+                                <option value="moons">Two Moons</option>
+                                <option value="circles">Concentric Circles</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>Epochs</label>
+                            <input type="number" id="epochs" value="50" min="1" max="1000" class="input-field compact">
+                        </div>
+                        
+                        <div class="control-buttons">
+                            <button class="action-btn success-btn" id="train-btn" disabled>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 3l8 5-8 5V3z" fill="currentColor"/>
+                                </svg>
+                                Train Network
+                            </button>
+                            
+                            <button class="action-btn secondary-btn" id="stop-btn" disabled>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <rect x="4" y="4" width="8" height="8" rx="1" fill="currentColor"/>
+                                </svg>
+                                Stop
+                            </button>
+                            
+                            <button class="action-btn secondary-btn" id="reset-btn" disabled>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M2 8a6 6 0 1112 0A6 6 0 012 8z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M2 8l2-2m-2 2l2 2" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar - Analytics -->
+            <aside class="analytics-sidebar">
+                <div class="analytics-section">
+                    <div class="section-header">
+                        <h2>Performance Charts</h2>
+                        <div class="header-icon">📈</div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-header">Training & Validation Loss</div>
+                        <canvas id="loss-chart"></canvas>
+                        <div class="chart-placeholder" id="loss-placeholder">
+                            <svg width="50" height="50" viewBox="0 0 50 50">
+                                <path d="M5 45L15 35L25 30L35 20L45 5" stroke="#e0e7ff" stroke-width="2.5" fill="none"/>
+                            </svg>
+                            <p>Train to see loss curve</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-header">Accuracy Progress</div>
+                        <canvas id="accuracy-chart"></canvas>
+                        <div class="chart-placeholder" id="acc-placeholder">
+                            <svg width="50" height="50" viewBox="0 0 50 50">
+                                <path d="M5 45L15 40L25 30L35 15L45 5" stroke="#e0e7ff" stroke-width="2.5" fill="none"/>
+                            </svg>
+                            <p>Train to see accuracy</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analytics-section">
+                    <div class="section-header">
+                        <h2>Prediction Testing</h2>
+                        <div class="header-icon">🔮</div>
+                    </div>
+                    
+                    <div class="prediction-panel">
+                        <div class="input-group">
+                            <label>Input Values <span class="hint">(comma-separated)</span></label>
+                            <input type="text" id="test-input" placeholder="0.5, 0.8" class="input-field">
+                        </div>
+                        
+                        <button class="action-btn primary-btn" id="predict-btn" disabled>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            Predict
+                        </button>
+                        
+                        <div class="prediction-result" id="prediction-result"></div>
+                    </div>
+                </div>
+
+                <div class="analytics-section">
+                    <div class="section-header">
+                        <h2>Advanced Visualization</h2>
+                        <div class="header-icon">📊</div>
+                    </div>
+                    
+                    <button class="action-btn secondary-btn full-width" id="generate-viz">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        Generate Analysis Report
+                    </button>
+                    
+                    <div class="viz-preview" id="viz-preview"></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="loading-text">Processing...</div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal-overlay" id="about-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎓 Biz Barada / About Us</h2>
+                <button class="modal-close" id="close-about">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="about-section">
+                    <h3>📚 Taslama Barada</h3>
+                    <p><strong>Ösen Neyron Tor Simulýatory</strong> - Professional Edition</p>
+                    <p>Bu taslama Türkmenistanyň Oguz han adyndaky Inžener we Tehnologiýalar Uniwersitetiniň diplom işidir.</p>
+                    <p><strong>Maksady:</strong> Neyron torlarynyň işleýşini öwrenmek, düşünmek we praktiki taýdan ulanmak.</p>
+                </div>
+
+                <div class="about-section">
+                    <h3>👨‍🎓 Talyp</h3>
+                    <p><strong>Ady:</strong>Esenov Ilyas</p>
+                    <p><strong>Uniwersitet:</strong> Türkmenistanyň Oguz han adyndaky Inžener we Tehnologiýalar Uniwersiteti</p>
+                    <p><strong>Ýurt:</strong> Türkmenistan 🇹🇲</p>
+                    <p><strong>Dereje:</strong> Bakalawr Diplom Işi</p>
+                </div>
+
+                <div class="about-section">
+                    <h3>💻 Tehnologiýalar</h3>
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <div class="tech-icon">🔥</div>
+                            <div class="tech-name">TensorFlow 2.15</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon">⚡</div>
+                            <div class="tech-name">PyTorch 2.1.2</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon">🔬</div>
+                            <div class="tech-name">Scikit-learn 1.3.2</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon">🐍</div>
+                            <div class="tech-name">Python 3.8+</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon">🌐</div>
+                            <div class="tech-name">Flask 3.0</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon">📊</div>
+                            <div class="tech-name">Chart.js 4.4</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h3>🌟 Aýratynlyklar</h3>
+                    <ul class="features-list">
+                        <li>✅ 3 sany AI Framework goldawy (TensorFlow, PyTorch, Scikit-learn)</li>
+                        <li>✅ Real wagt wizualizasiýa we grafikler</li>
+                        <li>✅ Professional cyber-tech dizaýn</li>
+                        <li>✅ Interaktiw neyron tor diagrammasy</li>
+                        <li>✅ 5 sany gurnalan maglumat toplumy</li>
+                        <li>✅ Framework deňeşdirme mümkinçiligi</li>
+                        <li>✅ Önümçilik taýýar kod</li>
+                    </ul>
+                </div>
+
+                <div class="about-section">
+                    <h3>🎯 Maksatlar</h3>
+                    <p><strong>Bilim:</strong> Neyron torlarynyň esaslaryny öwretmek</p>
+                    <p><strong>Tehniki:</strong> Professional web programma döretmek</p>
+                    <p><strong>Praktiki:</strong> AI framework bilen işlemegi görkezmek</p>
+                </div>
+
+                <div class="about-section about-footer">
+                    <p><strong>© 2026 Advanced Neural Network Simulator</strong></p>
+                    <p>Türkmenistanyň Oguz han adyndaky Inžener we Tehnologiýalar Uniwersiteti</p>
+                    <p>Türkmenistan 🇹🇲</p>
+                    <p style="margin-top: 1rem; color: var(--accent-cyan);">
+                        <strong>Diplom işiňiz üçin üstünlik! 🎓✨</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
