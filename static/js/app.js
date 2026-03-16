@@ -1,6 +1,190 @@
 // Advanced Neural Network Simulator - Professional Edition
 // Complete JavaScript Implementation
 
+// Translation Data
+const translations = {
+    tk: {
+        // Navigation
+        'app-title': 'Neyron Tor Simulýatory',
+        'app-tagline': 'Professional AI Tälim Platformasy',
+        'about': 'Biz Barada',
+        'export': 'Eksport',
+        
+        // Framework Section
+        'framework-selection': 'Framework Saýlamak',
+        'tensorflow-desc': 'Google-nyň ML Framework',
+        'pytorch-desc': 'Facebook-yň Deep Learning',
+        'sklearn-desc': 'Klassik ML Kitaphana',
+        
+        // Architecture
+        'network-architecture': 'Tor Arhitekturasy',
+        'input-layer': 'Giriş Gatlagy',
+        'hidden-layers': 'Gizlin Gatlaklary',
+        'output-layer': 'Çykyş Gatlagy',
+        'hint-layers': '(mysal: 8,6,4)',
+        
+        // Hyperparameters
+        'hyperparameters': 'Giperparametrler',
+        'activation-function': 'Işjeňleşdiriş Funksiýasy',
+        'optimizer': 'Optimizator',
+        'learning-rate': 'Öwreniş Tizligi',
+        'batch-size': 'Batch Ululygy',
+        'dropout-rate': 'Dropout Derejesi',
+        'batch-norm': 'Batch Normalizasiýa',
+        
+        // Buttons
+        'create-network': 'Neyron Tor Döret',
+        'train-network': 'Tor Tälim Ber',
+        'stop': 'Dur',
+        'reset': 'Täzeden Başla',
+        'predict': 'Çakla',
+        'generate-report': 'Hasabat Döret',
+        
+        // Training
+        'training-config': 'Tälim Sazlamalary',
+        'dataset': 'Maglumat Toplumy',
+        'epochs': 'Epochalar',
+        
+        // Metrics
+        'training-loss': 'Tälim Ýitgisi',
+        'accuracy': 'Takyklyk',
+        'val-accuracy': 'Barlag Takyklygy',
+        'total-epochs': 'Jemi Epocha',
+        
+        // Visualization
+        'network-viz': 'Tor Wizualizasiýasy',
+        'performance-charts': 'Öndürijilik Grafikleri',
+        'training-val-loss': 'Tälim we Barlag Ýitgisi',
+        'accuracy-progress': 'Takyklyk Ösüşi',
+        
+        // Prediction
+        'prediction-testing': 'Çaklama Synag',
+        'input-values': 'Giriş Bahalary',
+        'hint-input': '(vergul bilen bölünen)',
+        
+        // Visualization
+        'network-viz': 'Tor Wizualizasiýasy',
+        'performance-charts': 'Öndürijilik Grafikleri',
+        'training-val-loss': 'Tälim we Barlag Ýitgisi',
+        'accuracy-progress': 'Takyklyk Ösüşi',
+        'advanced-viz': 'Ösen Wizualizasiýa',
+        'create-viz-placeholder': 'Tor döretmek üçin "Create Network" basyň',
+        'train-to-see-loss': 'Tälim ber, ýitgi grafigy görüner',
+        'train-to-see-acc': 'Tälim ber, takyklyk görüner',
+        
+        // Dataset names
+        'dataset-moons': 'Iki Aý',
+        'dataset-circles': 'Tegelikler',
+        
+        // Messages
+        'network-created': 'Neyron tor üstünlikli döredildi!',
+        'training-complete': 'Tälim tamamlandy!',
+        'training-stopped': 'Tälim togtatyldy',
+        'network-reset': 'Tor täzeden başladyldy',
+        'reset-confirm': 'Tory täzeden başlatmak isleýärsiňizmi? Ähli tälim maglumatlary ýitiriler.',
+        'generating-viz': 'Wizualizasiýa döredilýär...',
+        'viz-generated': 'Wizualizasiýa döredildi!',
+        'switched-to': 'geçildi',
+        'invalid-layers': 'Dogry gatlaklary giriziň',
+        'invalid-input': 'Dogry giriş bahalaryny giriziň',
+        'expected-inputs': 'giriş bahalary garaşylýar',
+        'prediction-label': 'Çaklama:',
+        'output-label': 'Çykyş:'
+    },
+    en: {
+        // Navigation
+        'app-title': 'Neural Network Simulator',
+        'app-tagline': 'Professional AI Training Platform',
+        'about': 'About Us',
+        'export': 'Export',
+        
+        // Framework Section
+        'framework-selection': 'Framework Selection',
+        'tensorflow-desc': 'Google\'s ML Framework',
+        'pytorch-desc': 'Facebook\'s Deep Learning',
+        'sklearn-desc': 'Classic ML Library',
+        
+        // Architecture
+        'network-architecture': 'Network Architecture',
+        'input-layer': 'Input Layer',
+        'hidden-layers': 'Hidden Layers',
+        'output-layer': 'Output Layer',
+        'hint-layers': '(e.g., 8,6,4)',
+        
+        // Hyperparameters
+        'hyperparameters': 'Hyperparameters',
+        'activation-function': 'Activation Function',
+        'optimizer': 'Optimizer',
+        'learning-rate': 'Learning Rate',
+        'batch-size': 'Batch Size',
+        'dropout-rate': 'Dropout Rate',
+        'batch-norm': 'Batch Normalization',
+        
+        // Buttons
+        'create-network': 'Create Neural Network',
+        'train-network': 'Train Network',
+        'stop': 'Stop',
+        'reset': 'Reset',
+        'predict': 'Predict',
+        'generate-report': 'Generate Report',
+        
+        // Training
+        'training-config': 'Training Configuration',
+        'dataset': 'Dataset',
+        'epochs': 'Epochs',
+        
+        // Metrics
+        'training-loss': 'Training Loss',
+        'accuracy': 'Accuracy',
+        'val-accuracy': 'Val Accuracy',
+        'total-epochs': 'Total Epochs',
+        
+        // Visualization
+        'network-viz': 'Network Visualization',
+        'performance-charts': 'Performance Charts',
+        'training-val-loss': 'Training & Validation Loss',
+        'accuracy-progress': 'Accuracy Progress',
+        
+        // Prediction
+        'prediction-testing': 'Prediction Testing',
+        'input-values': 'Input Values',
+        'hint-input': '(comma-separated)',
+        
+        // Visualization
+        'network-viz': 'Network Visualization',
+        'performance-charts': 'Performance Charts',
+        'training-val-loss': 'Training & Validation Loss',
+        'accuracy-progress': 'Accuracy Progress',
+        'advanced-viz': 'Advanced Visualization',
+        'create-viz-placeholder': 'Click "Create Network" to visualize architecture',
+        'train-to-see-loss': 'Train to see loss curve',
+        'train-to-see-acc': 'Train to see accuracy',
+        
+        // Dataset names
+        'dataset-moons': 'Two Moons',
+        'dataset-circles': 'Concentric Circles',
+        
+        // Messages
+        'network-created': 'Neural network created successfully!',
+        'training-complete': 'Training completed!',
+        'training-stopped': 'Training stopped',
+        'network-reset': 'Network reset',
+        'reset-confirm': 'Reset network? All training progress will be lost.',
+        'generating-viz': 'Generating visualization...',
+        'viz-generated': 'Visualization generated!',
+        'switched-to': 'Switched to',
+        'invalid-layers': 'Please enter valid layer sizes',
+        'invalid-input': 'Please enter valid input values',
+        'expected-inputs': 'input values expected',
+        'prediction-label': 'Prediction:',
+        'output-label': 'Output:'
+    }
+};
+
+// Current language
+let currentLang = localStorage.getItem('language') || 'tk';
+let currentTheme = localStorage.getItem('theme') || 'dark';
+
 // Global State
 let appState = {
     networkId: null,
@@ -74,9 +258,59 @@ const elements = {
 
 // Initialize Application
 function initApp() {
+    initTheme();
+    initLanguage();
     setupEventListeners();
     initCharts();
     setupCanvas();
+}
+
+// Initialize Theme
+function initTheme() {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+}
+
+// Initialize Language
+function initLanguage() {
+    updateLanguage(currentLang);
+    
+    // Set active language button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === currentLang);
+    });
+}
+
+// Update Language
+function updateLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('language', lang);
+    
+    // Update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            if (element.tagName === 'INPUT' && element.placeholder !== undefined) {
+                element.placeholder = translations[lang][key];
+            } else {
+                element.textContent = translations[lang][key];
+            }
+        }
+    });
+    
+    // Update active button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+}
+
+// Toggle Theme
+function toggleTheme() {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', currentTheme);
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // Update charts colors
+    updateChartsTheme();
 }
 
 // Setup Event Listeners
@@ -87,6 +321,24 @@ function setupEventListeners() {
             selectFramework(option.dataset.framework);
         });
     });
+    
+    // Language Switcher
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            updateLanguage(btn.dataset.lang);
+            showNotification(
+                translations[btn.dataset.lang]['switched-to'] + ' ' + 
+                (btn.dataset.lang === 'tk' ? 'Türkmençä' : 'English'),
+                'info'
+            );
+        });
+    });
+    
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
     
     // Network Creation
     elements.createBtn.addEventListener('click', createNetwork);
@@ -147,6 +399,10 @@ function selectFramework(framework) {
 
 // Initialize Charts
 function initCharts() {
+    const isDark = currentTheme === 'dark';
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+    const textColor = isDark ? '#9ca3af' : '#64748b';
+    
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -157,7 +413,7 @@ function initCharts() {
             legend: {
                 display: true,
                 labels: {
-                    color: '#d1d5db',
+                    color: textColor,
                     font: {
                         family: 'Outfit',
                         size: 11
@@ -168,11 +424,11 @@ function initCharts() {
         scales: {
             x: {
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.1)',
+                    color: gridColor,
                     drawBorder: false
                 },
                 ticks: {
-                    color: '#9ca3af',
+                    color: textColor,
                     font: {
                         family: 'Fira Code',
                         size: 10
@@ -181,11 +437,11 @@ function initCharts() {
             },
             y: {
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.1)',
+                    color: gridColor,
                     drawBorder: false
                 },
                 ticks: {
-                    color: '#9ca3af',
+                    color: textColor,
                     font: {
                         family: 'Fira Code',
                         size: 10
@@ -262,6 +518,27 @@ function initCharts() {
             }
         }
     });
+}
+
+// Update Charts Theme
+function updateChartsTheme() {
+    if (!lossChart || !accuracyChart) return;
+    
+    const isDark = currentTheme === 'dark';
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+    const textColor = isDark ? '#9ca3af' : '#64748b';
+    
+    const updateOptions = (chart) => {
+        chart.options.plugins.legend.labels.color = textColor;
+        chart.options.scales.x.grid.color = gridColor;
+        chart.options.scales.x.ticks.color = textColor;
+        chart.options.scales.y.grid.color = gridColor;
+        chart.options.scales.y.ticks.color = textColor;
+        chart.update();
+    };
+    
+    updateOptions(lossChart);
+    updateOptions(accuracyChart);
 }
 
 // Update Charts
@@ -463,7 +740,7 @@ async function createNetwork() {
         drawNetwork();
         
         enableControls(true);
-        showNotification('Neural network created successfully!', 'success');
+        showNotification(translations[currentLang]['network-created'], 'success');
         
     } catch (error) {
         console.error('Error creating network:', error);
@@ -499,7 +776,7 @@ async function trainNetwork() {
         // Update charts
         updateCharts(result.history);
         
-        showNotification('Training completed!', 'success');
+        showNotification(translations[currentLang]['training-complete'], 'success');
         
     } catch (error) {
         console.error('Error training network:', error);
@@ -513,12 +790,12 @@ async function trainNetwork() {
 function stopTraining() {
     appState.isTraining = false;
     updateTrainingState(false);
-    showNotification('Training stopped', 'info');
+    showNotification(translations[currentLang]['training-stopped'], 'info');
 }
 
 // Reset Network
 async function resetNetwork() {
-    if (!confirm('Reset network? All training progress will be lost.')) {
+    if (!confirm(translations[currentLang]['reset-confirm'])) {
         return;
     }
     
@@ -552,7 +829,7 @@ async function resetNetwork() {
     elements.canvasPlaceholder.classList.remove('hidden');
     
     enableControls(false);
-    showNotification('Network reset', 'info');
+    showNotification(translations[currentLang]['network-reset'], 'info');
 }
 
 // Make Prediction
@@ -578,10 +855,10 @@ async function makePrediction() {
         
         elements.predictionResult.innerHTML = `
             <div style="margin-bottom: 0.5rem;">
-                <strong style="color: #00d4ff;">Prediction:</strong>
+                <strong style="color: #00d4ff;" data-i18n="prediction-label">${translations[currentLang]['prediction-label']}</strong>
             </div>
             <div style="font-family: var(--font-code); color: #10b981;">
-                ${predictions.map((p, i) => `Output ${i + 1}: ${p.toFixed(4)}`).join('<br>')}
+                ${predictions.map((p, i) => `${translations[currentLang]['output-label']} ${i + 1}: ${p.toFixed(4)}`).join('<br>')}
             </div>
         `;
         elements.predictionResult.classList.add('show');
@@ -605,7 +882,7 @@ async function generateVisualization() {
         `;
         elements.vizPreview.classList.add('show');
         
-        showNotification('Visualization generated!', 'success');
+        showNotification(translations[currentLang]['viz-generated'], 'success');
         
     } catch (error) {
         console.error('Error generating visualization:', error);

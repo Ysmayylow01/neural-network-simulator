@@ -33,24 +33,49 @@
                         <path d="M12 18L24 18M12 18L17 11M12 18L17 25" stroke="url(#logoGrad)" stroke-width="1.5" opacity="0.4"/>
                     </svg>
                     <div class="brand-text">
-                        <h1>Neural Network Simulator</h1>
-                        <span class="brand-tagline">Professional AI Training Platform</span>
+                        <h1 data-i18n="app-title">Neural Network Simulator</h1>
+                        <span class="brand-tagline" data-i18n="app-tagline">Professional AI Training Platform</span>
                     </div>
                 </div>
                 <div class="nav-actions">
                     <div class="framework-badge" id="framework-badge">TensorFlow</div>
-                    <button class="nav-btn" id="about-btn" title="Biz Barada / About Us">
+                    
+                    <!-- Language Switcher -->
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="tk">
+                            <span class="flag">🇹🇲</span>
+                            <span class="lang-text">TM</span>
+                        </button>
+                        <button class="lang-btn" data-lang="en">
+                            <span class="flag">🇬🇧</span>
+                            <span class="lang-text">EN</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M10 2v2M10 16v2M18 10h-2M4 10H2M15.66 4.34l-1.41 1.41M5.75 14.25l-1.41 1.41M15.66 15.66l-1.41-1.41M5.75 5.75L4.34 4.34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon hidden" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M17 10.5A7 7 0 119.5 3a5.5 5.5 0 007.5 7.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <button class="nav-btn" id="about-btn" data-i18n="about">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                             <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/>
                             <path d="M9 6V6.5M9 8.5V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
-                        Biz Barada
+                        <span data-i18n="about">Biz Barada</span>
                     </button>
+                    
                     <button class="nav-btn" id="download-report">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                             <path d="M9 12L9 3M9 12L6 9M9 12L12 9M3 15L15 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                         </svg>
-                        Export
+                        <span data-i18n="export">Export</span>
                     </button>
                 </div>
             </div>
@@ -62,7 +87,7 @@
             <aside class="config-sidebar">
                 <div class="sidebar-section">
                     <div class="section-header">
-                        <h2>Framework Selection</h2>
+                        <h2 data-i18n="framework-selection">Framework Saýlamak</h2>
                         <div class="header-icon">🧠</div>
                     </div>
                     
@@ -76,7 +101,7 @@
                             </div>
                             <div class="framework-info">
                                 <div class="framework-name">TensorFlow</div>
-                                <div class="framework-desc">Google's ML Framework</div>
+                                <div class="framework-desc" data-i18n="tensorflow-desc">Google-nyň ML Framework</div>
                             </div>
                         </div>
                         
@@ -89,7 +114,7 @@
                             </div>
                             <div class="framework-info">
                                 <div class="framework-name">PyTorch</div>
-                                <div class="framework-desc">Facebook's Deep Learning</div>
+                                <div class="framework-desc" data-i18n="pytorch-desc">Facebook-yň Deep Learning</div>
                             </div>
                         </div>
                         
@@ -102,7 +127,7 @@
                             </div>
                             <div class="framework-info">
                                 <div class="framework-name">Scikit-learn</div>
-                                <div class="framework-desc">Classic ML Library</div>
+                                <div class="framework-desc" data-i18n="sklearn-desc">Klassik ML Kitaphana</div>
                             </div>
                         </div>
                     </div>
@@ -110,23 +135,26 @@
 
                 <div class="sidebar-section">
                     <div class="section-header">
-                        <h2>Network Architecture</h2>
+                        <h2 data-i18n="network-architecture">Tor Arhitekturasy</h2>
                         <div class="header-icon">🏗️</div>
                     </div>
                     
                     <div class="form-grid">
                         <div class="input-group">
-                            <label>Input Layer</label>
+                            <label data-i18n="input-layer">Giriş Gatlagy</label>
                             <input type="number" id="input-layer" value="2" min="1" max="100" class="input-field">
                         </div>
                         
                         <div class="input-group">
-                            <label>Hidden Layers <span class="hint">(e.g., 8,6,4)</span></label>
+                            <label>
+                                <span data-i18n="hidden-layers">Gizlin Gatlaklary</span>
+                                <span class="hint" data-i18n="hint-layers">(mysal: 8,6,4)</span>
+                            </label>
                             <input type="text" id="hidden-layers" value="8,6" placeholder="8,6,4" class="input-field">
                         </div>
                         
                         <div class="input-group">
-                            <label>Output Layer</label>
+                            <label data-i18n="output-layer">Çykyş Gatlagy</label>
                             <input type="number" id="output-layer" value="1" min="1" max="10" class="input-field">
                         </div>
                     </div>
@@ -134,13 +162,13 @@
 
                 <div class="sidebar-section">
                     <div class="section-header">
-                        <h2>Hyperparameters</h2>
+                        <h2 data-i18n="hyperparameters">Giperparametrler</h2>
                         <div class="header-icon">⚙️</div>
                     </div>
                     
                     <div class="form-grid">
                         <div class="input-group">
-                            <label>Activation Function</label>
+                            <label data-i18n="activation-function">Işjeňleşdiriş Funksiýasy</label>
                             <select id="activation" class="select-field">
                                 <option value="relu">ReLU</option>
                                 <option value="tanh">Tanh</option>
@@ -149,7 +177,7 @@
                         </div>
                         
                         <div class="input-group">
-                            <label>Optimizer</label>
+                            <label data-i18n="optimizer">Optimizator</label>
                             <select id="optimizer" class="select-field">
                                 <option value="adam">Adam</option>
                                 <option value="sgd">SGD</option>
@@ -158,24 +186,24 @@
                         </div>
                         
                         <div class="input-group">
-                            <label>Learning Rate</label>
+                            <label data-i18n="learning-rate">Öwreniş Tizligi</label>
                             <input type="number" id="learning-rate" value="0.001" step="0.0001" class="input-field">
                         </div>
                         
                         <div class="input-group">
-                            <label>Batch Size</label>
+                            <label data-i18n="batch-size">Batch Ululygy</label>
                             <input type="number" id="batch-size" value="32" min="1" max="256" class="input-field">
                         </div>
                         
                         <div class="input-group">
-                            <label>Dropout Rate</label>
+                            <label data-i18n="dropout-rate">Dropout Derejesi</label>
                             <input type="number" id="dropout" value="0.0" min="0" max="0.9" step="0.1" class="input-field">
                         </div>
                         
                         <div class="input-group checkbox-group">
                             <label>
                                 <input type="checkbox" id="batch-norm">
-                                <span>Batch Normalization</span>
+                                <span data-i18n="batch-norm">Batch Normalizasiýa</span>
                             </label>
                         </div>
                     </div>
@@ -185,7 +213,7 @@
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
-                    Create Neural Network
+                    <span data-i18n="create-network">Neyron Tor Döret</span>
                 </button>
             </aside>
 
@@ -196,7 +224,7 @@
                     <div class="metric-card">
                         <div class="metric-icon">📊</div>
                         <div class="metric-content">
-                            <div class="metric-label">Training Loss</div>
+                            <div class="metric-label" data-i18n="training-loss">Tälim Ýitgisi</div>
                             <div class="metric-value" id="train-loss">--</div>
                         </div>
                     </div>
@@ -204,7 +232,7 @@
                     <div class="metric-card">
                         <div class="metric-icon">🎯</div>
                         <div class="metric-content">
-                            <div class="metric-label">Accuracy</div>
+                            <div class="metric-label" data-i18n="accuracy">Takyklyk</div>
                             <div class="metric-value" id="train-accuracy">--</div>
                         </div>
                     </div>
@@ -212,7 +240,7 @@
                     <div class="metric-card">
                         <div class="metric-icon">✓</div>
                         <div class="metric-content">
-                            <div class="metric-label">Val Accuracy</div>
+                            <div class="metric-label" data-i18n="val-accuracy">Barlag Takyklygy</div>
                             <div class="metric-value" id="val-accuracy">--</div>
                         </div>
                     </div>
@@ -220,7 +248,7 @@
                     <div class="metric-card">
                         <div class="metric-icon">🔄</div>
                         <div class="metric-content">
-                            <div class="metric-label">Epochs</div>
+                            <div class="metric-label" data-i18n="total-epochs">Jemi Epocha</div>
                             <div class="metric-value" id="total-epochs">0</div>
                         </div>
                     </div>
@@ -229,7 +257,7 @@
                 <!-- Network Visualization -->
                 <div class="viz-container">
                     <div class="viz-header">
-                        <h3>Network Architecture Visualization</h3>
+                        <h3 data-i18n="network-viz">Tor Wizualizasiýasy</h3>
                         <div class="viz-controls">
                             <button class="viz-btn" id="toggle-labels">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -256,7 +284,7 @@
                                     <circle cx="60" cy="40" r="8" fill="#e0e7ff" opacity="0.5"/>
                                 </svg>
                             </div>
-                            <p>Create a network to visualize architecture</p>
+                            <p data-i18n="create-viz-placeholder">Tor döretmek üçin "Create Network" basyň</p>
                         </div>
                     </div>
                 </div>
@@ -264,23 +292,23 @@
                 <!-- Training Controls -->
                 <div class="training-panel">
                     <div class="training-header">
-                        <h3>Training Configuration</h3>
+                        <h3 data-i18n="training-config">Tälim Sazlamalary</h3>
                     </div>
                     
                     <div class="training-controls">
                         <div class="control-group">
-                            <label>Dataset</label>
+                            <label data-i18n="dataset">Maglumat Toplumy</label>
                             <select id="dataset" class="select-field compact">
                                 <option value="xor">XOR Problem</option>
                                 <option value="and">AND Gate</option>
                                 <option value="or">OR Gate</option>
-                                <option value="moons">Two Moons</option>
-                                <option value="circles">Concentric Circles</option>
+                                <option value="moons" data-i18n="dataset-moons">Iki Aý</option>
+                                <option value="circles" data-i18n="dataset-circles">Tegelikler</option>
                             </select>
                         </div>
                         
                         <div class="control-group">
-                            <label>Epochs</label>
+                            <label data-i18n="epochs">Epochalar</label>
                             <input type="number" id="epochs" value="50" min="1" max="1000" class="input-field compact">
                         </div>
                         
@@ -289,14 +317,14 @@
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                     <path d="M4 3l8 5-8 5V3z" fill="currentColor"/>
                                 </svg>
-                                Train Network
+                                <span data-i18n="train-network">Tor Tälim Ber</span>
                             </button>
                             
                             <button class="action-btn secondary-btn" id="stop-btn" disabled>
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                     <rect x="4" y="4" width="8" height="8" rx="1" fill="currentColor"/>
                                 </svg>
-                                Stop
+                                <span data-i18n="stop">Dur</span>
                             </button>
                             
                             <button class="action-btn secondary-btn" id="reset-btn" disabled>
@@ -304,7 +332,7 @@
                                     <path d="M2 8a6 6 0 1112 0A6 6 0 012 8z" stroke="currentColor" stroke-width="1.5" fill="none"/>
                                     <path d="M2 8l2-2m-2 2l2 2" stroke="currentColor" stroke-width="1.5"/>
                                 </svg>
-                                Reset
+                                <span data-i18n="reset">Täzeden Başla</span>
                             </button>
                         </div>
                     </div>
@@ -315,42 +343,45 @@
             <aside class="analytics-sidebar">
                 <div class="analytics-section">
                     <div class="section-header">
-                        <h2>Performance Charts</h2>
+                        <h2 data-i18n="performance-charts">Öndürijilik Grafikleri</h2>
                         <div class="header-icon">📈</div>
                     </div>
                     
                     <div class="chart-container">
-                        <div class="chart-header">Training & Validation Loss</div>
+                        <div class="chart-header" data-i18n="training-val-loss">Tälim we Barlag Ýitgisi</div>
                         <canvas id="loss-chart"></canvas>
                         <div class="chart-placeholder" id="loss-placeholder">
                             <svg width="50" height="50" viewBox="0 0 50 50">
                                 <path d="M5 45L15 35L25 30L35 20L45 5" stroke="#e0e7ff" stroke-width="2.5" fill="none"/>
                             </svg>
-                            <p>Train to see loss curve</p>
+                            <p data-i18n="train-to-see-loss">Tälim ber, ýitgi grafigy görüner</p>
                         </div>
                     </div>
                     
                     <div class="chart-container">
-                        <div class="chart-header">Accuracy Progress</div>
+                        <div class="chart-header" data-i18n="accuracy-progress">Takyklyk Ösüşi</div>
                         <canvas id="accuracy-chart"></canvas>
                         <div class="chart-placeholder" id="acc-placeholder">
                             <svg width="50" height="50" viewBox="0 0 50 50">
                                 <path d="M5 45L15 40L25 30L35 15L45 5" stroke="#e0e7ff" stroke-width="2.5" fill="none"/>
                             </svg>
-                            <p>Train to see accuracy</p>
+                            <p data-i18n="train-to-see-acc">Tälim ber, takyklyk görüner</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="analytics-section">
                     <div class="section-header">
-                        <h2>Prediction Testing</h2>
+                        <h2 data-i18n="prediction-testing">Çaklama Synag</h2>
                         <div class="header-icon">🔮</div>
                     </div>
                     
                     <div class="prediction-panel">
                         <div class="input-group">
-                            <label>Input Values <span class="hint">(comma-separated)</span></label>
+                            <label>
+                                <span data-i18n="input-values">Giriş Bahalary</span>
+                                <span class="hint" data-i18n="hint-input">(vergul bilen bölünen)</span>
+                            </label>
                             <input type="text" id="test-input" placeholder="0.5, 0.8" class="input-field">
                         </div>
                         
@@ -359,7 +390,7 @@
                                 <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
                                 <path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5"/>
                             </svg>
-                            Predict
+                            <span data-i18n="predict">Çakla</span>
                         </button>
                         
                         <div class="prediction-result" id="prediction-result"></div>
@@ -368,7 +399,7 @@
 
                 <div class="analytics-section">
                     <div class="section-header">
-                        <h2>Advanced Visualization</h2>
+                        <h2 data-i18n="advanced-viz">Ösen Wizualizasiýa</h2>
                         <div class="header-icon">📊</div>
                     </div>
                     
@@ -379,7 +410,7 @@
                             <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
                             <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
                         </svg>
-                        Generate Analysis Report
+                        <span data-i18n="generate-report">Analiz Hasabatyny Döret</span>
                     </button>
                     
                     <div class="viz-preview" id="viz-preview"></div>
@@ -413,14 +444,14 @@
                 <div class="about-section">
                     <h3>📚 Taslama Barada</h3>
                     <p><strong>Ösen Neyron Tor Simulýatory</strong> - Professional Edition</p>
-                    <p>Bu taslama Türkmenistanyň Oguz han adyndaky Inžener we Tehnologiýalar Uniwersitetiniň diplom işidir.</p>
+                    <p>Bu taslama Oguz han adyndaky Inženerçilik-Tehnologiýalar Uniwersitetiniň diplom işidir.</p>
                     <p><strong>Maksady:</strong> Neyron torlarynyň işleýşini öwrenmek, düşünmek we praktiki taýdan ulanmak.</p>
                 </div>
 
                 <div class="about-section">
                     <h3>👨‍🎓 Talyp</h3>
-                    <p><strong>Ady:</strong>Esenov Ilyas</p>
-                    <p><strong>Uniwersitet:</strong> Türkmenistanyň Oguz han adyndaky Inžener we Tehnologiýalar Uniwersiteti</p>
+                    <p><strong>Ady:</strong> Merdan</p>
+                    <p><strong>Uniwersitet:</strong> Oguz han adyndaky Inženerçilik-Tehnologiýalar Uniwersiteti</p>
                     <p><strong>Ýurt:</strong> Türkmenistan 🇹🇲</p>
                     <p><strong>Dereje:</strong> Bakalawr Diplom Işi</p>
                 </div>
@@ -476,8 +507,8 @@
                 </div>
 
                 <div class="about-section about-footer">
-                    <p><strong>© 2026 Advanced Neural Network Simulator</strong></p>
-                    <p>Türkmenistanyň Oguz han adyndaky Inžener we Tehnologiýalar Uniwersiteti</p>
+                    <p><strong>© 2025 Advanced Neural Network Simulator</strong></p>
+                    <p>Oguz han adyndaky Inženerçilik-Tehnologiýalar Uniwersiteti</p>
                     <p>Türkmenistan 🇹🇲</p>
                     <p style="margin-top: 1rem; color: var(--accent-cyan);">
                         <strong>Diplom işiňiz üçin üstünlik! 🎓✨</strong>
