@@ -62,15 +62,26 @@ class TensorFlowNetwork:
         
         model = models.Sequential()
         
+        # Resolve activation for Keras string API
+        keras_activation = activation
+        if activation == 'leaky_relu':
+            keras_activation = tf.keras.layers.LeakyReLU
+
+        def add_dense(units, name, is_output=False, output_activation=None):
+            if is_output:
+                model.add(layers.Dense(units, activation=output_activation, name=name))
+            elif activation == 'leaky_relu':
+                model.add(layers.Dense(units, name=name))
+                model.add(keras_activation())
+            else:
+                model.add(layers.Dense(units, activation=keras_activation, name=name))
+
         # Input layer
-        model.add(layers.Dense(layers_config[0], activation=activation, 
-                              input_shape=(layers_config[0],),
-                              name='input_layer'))
-        
+        add_dense(layers_config[0], 'input_layer')
+
         # Hidden layers
         for i, units in enumerate(layers_config[1:-1], 1):
-            model.add(layers.Dense(units, activation=activation, 
-                                  name=f'hidden_{i}'))
+            add_dense(units, f'hidden_{i}')
             
             # Add dropout if specified
             if self.config.get('dropout', 0) > 0:
@@ -82,8 +93,7 @@ class TensorFlowNetwork:
         
         # Output layer
         output_activation = 'sigmoid' if layers_config[-1] == 1 else 'softmax'
-        model.add(layers.Dense(layers_config[-1], activation=output_activation,
-                              name='output_layer'))
+        add_dense(layers_config[-1], 'output_layer', is_output=True, output_activation=output_activation)
         
         # Compile model
         optimizer_name = self.config.get('optimizer', 'adam')
@@ -196,6 +206,12 @@ class PyTorchNetwork(nn.Module):
             self.activation = nn.Tanh()
         elif activation == 'sigmoid':
             self.activation = nn.Sigmoid()
+        elif activation == 'leaky_relu':
+            self.activation = nn.LeakyReLU(negative_slope=0.01)
+        elif activation == 'elu':
+            self.activation = nn.ELU()
+        elif activation == 'swish':
+            self.activation = nn.SiLU()
         else:
             self.activation = nn.ReLU()
         
@@ -321,7 +337,11 @@ class ScikitLearnNetwork:
         layers_config = self.config['layers'][1:-1]  # Hidden layers only
         activation = self.config.get('activation', 'relu')
         learning_rate = self.config.get('learning_rate', 0.001)
-        
+
+        # sklearn supports only: relu, tanh, logistic, identity
+        sklearn_activation_map = {'sigmoid': 'logistic', 'leaky_relu': 'relu', 'elu': 'relu', 'swish': 'tanh'}
+        activation = sklearn_activation_map.get(activation, activation)
+
         self.model = MLPClassifier(
             hidden_layer_sizes=tuple(layers_config),
             activation=activation,
