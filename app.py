@@ -672,4 +672,4 @@ if __name__ == '__main__':
     os.makedirs('models', exist_ok=True)
     os.makedirs('static/images', exist_ok=True)
     
-    app.run(debug=True, host='0.0.0.0', port=5010)
+    app.run(debug=True, host='0.0.0.0', port=5012)
